@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>支持与常见问题 · 秒杀时钟 Gaber</title>
+<style>
+:root{--bg:#06090f;--bg2:#0a0f1a;--surface:rgba(255,255,255,.06);--border:rgba(255,255,255,.12);
+--text:#f2f5f9;--muted:#8b95a5;--accent:#3fd9ff;--mono:"SF Mono",ui-monospace,Menlo,Consolas,monospace}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:linear-gradient(160deg,var(--bg2),var(--bg) 60%);color:var(--text);
+font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Segoe UI",sans-serif;min-height:100vh;line-height:1.75;-webkit-font-smoothing:antialiased}
+body.en .zh{display:none}body:not(.en) .en{display:none}
+.wrap{max-width:760px;margin:0 auto;padding:0 24px}
+header{display:flex;justify-content:space-between;align-items:center;padding:22px 0}
+.brand{display:flex;align-items:center;gap:10px;font-weight:700;font-size:16px;color:var(--text);text-decoration:none}
+.brand .dot{width:32px;height:32px;border-radius:9px;background:linear-gradient(140deg,#0e1524,#060a12);
+border:1px solid var(--border);display:grid;place-items:center;font-family:var(--mono);color:var(--accent);font-size:14px}
+.lang-btn{background:var(--surface);border:1px solid var(--border);color:var(--text);border-radius:99px;padding:6px 14px;font-size:13px;cursor:pointer}
+.lang-btn:hover{border-color:var(--accent);color:var(--accent)}
+main{padding:36px 0 20px}
+h1{font-size:2rem;letter-spacing:-.02em;margin-bottom:34px}
+h2{font-size:1.15rem;margin:34px 0 14px}
+p,li{color:var(--muted);font-size:.97rem}
+ol,ul{padding-left:22px;margin:8px 0}
+a{color:var(--accent);text-decoration:none}
+details{background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:16px 20px;margin-bottom:10px}
+summary{cursor:pointer;color:var(--text);font-weight:600;font-size:.98rem}
+summary::marker{color:var(--accent)}
+details p{margin-top:10px}
+.contact{background:var(--surface);border:1px solid var(--border);border-left:3px solid var(--accent);
+border-radius:12px;padding:18px 20px;margin:26px 0}
+.contact p{color:var(--text)}
+footer{border-top:1px solid var(--border);padding:28px 0 44px;margin-top:48px;display:flex;
+justify-content:space-between;flex-wrap:wrap;gap:12px;color:var(--muted);font-size:13.5px}
+footer a{color:var(--muted);margin-right:16px}footer a:hover{color:var(--accent)}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header>
+  <a class="brand" href="index.html"><span class="dot">:59</span><span><span class="zh">秒杀时钟</span><span class="en">Gaber Clock</span></span></a>
+  <button class="lang-btn" onclick="toggleLang()"><span class="zh">EN</span><span class="en">中文</span></button>
+</header>
+<main>
+<h1><span class="zh">支持与常见问题</span><span class="en">Support &amp; FAQ</span></h1>
+
+<h2><span class="zh">快速上手</span><span class="en">Getting started</span></h2>
+<ol>
+<li><span class="zh">打开 App，主界面即显示与系统同步的毫秒级时钟。</span>
+<span class="en">Open the app — the main screen shows the millisecond clock, synced to system time.</span></li>
+<li><span class="zh">点击「开启跨 App 悬浮窗」，时钟会变成一个画中画小窗。</span>
+<span class="en">Tap "开启跨 App 悬浮窗" (Start floating window) and the clock becomes a Picture-in-Picture window.</span></li>
+<li><span class="zh">切换到任何其他 App（购物、抢票……），小窗始终悬浮在最上层。</span>
+<span class="en">Switch to any other app (shopping, ticketing…) — the window stays floating on top.</span></li>
+<li><span class="zh">拖动小窗四角可移动位置，双指捏合可调整大小；再次回到 App 点同一按钮即可关闭。</span>
+<span class="en">Drag the window to move it, pinch to resize; return to the app and tap the same button to close it.</span></li>
+</ol>
+
+<h2><span class="zh">常见问题</span><span class="en">FAQ</span></h2>
+
+<details><summary><span class="zh">悬浮窗按钮是灰色的，点不了？</span><span class="en">The floating-window button is grayed out?</span></summary>
+<p><span class="zh">悬浮窗依赖系统的"画中画"能力。请检查：设置 → 通用 → 画中画 是否已开启；另外 iOS 模拟器不支持画中画，请在真机上使用。</span>
+<span class="en">The floating window relies on the system Picture-in-Picture capability. Check Settings → General → Picture in Picture is enabled. Note the iOS Simulator does not support PiP — use a real device.</span></p></details>
+
+<details><summary><span class="zh">时钟准吗？和北京时间差多少？</span><span class="en">How accurate is the clock?</span></summary>
+<p><span class="zh">App 直接读取 iPhone 的系统时间，精确到毫秒显示。系统时间本身由 iOS 通过网络时间服务自动校准——通常与标准时间的偏差在几十毫秒以内。App 自身不做任何时间修改。</span>
+<span class="en">The app reads the iPhone's system time directly and displays it to the millisecond. iOS itself keeps system time calibrated via network time services — typically within tens of milliseconds of the reference. The app never alters time.</span></p></details>
+
+<details><summary><span class="zh">为什么后台还能走字？会耗很多电吗？</span><span class="en">Why does it keep ticking in the background? Battery impact?</span></summary>
+<p><span class="zh">悬浮窗通过系统画中画通道渲染（每秒 30 帧的小画面），这是 iOS 的原生机制，功耗与播放一个小视频窗口相当。不需要悬浮窗时关掉它即可。</span>
+<span class="en">The floating window renders through the system PiP pipeline (a small 30 fps surface) — a native iOS mechanism with power draw comparable to a small video window. Close it whenever you don't need it.</span></p></details>
+
+<details><summary><span class="zh">时钟卡片被我拖到边上了，怎么复位？</span><span class="en">I dragged the clock card away — how do I reset it?</span></summary>
+<p><span class="zh">双击时钟卡片即可回到屏幕中央。卡片永远不会被完全拖出屏幕。</span>
+<span class="en">Double-tap the clock card to snap it back to center. The card can never be dragged fully off-screen.</span></p></details>
+
+<details><summary><span class="zh">App 会播放声音吗？为什么申请了音频后台模式？</span><span class="en">Does the app play audio? Why the audio background mode?</span></summary>
+<p><span class="zh">不播放任何声音。"音频、AirPlay 与画中画"是 iOS 中承载画中画功能的官方后台模式，App 以静音、可混音的方式使用它，不会打断你正在听的音乐或播客。</span>
+<span class="en">It plays no sound. "Audio, AirPlay, and Picture in Picture" is the official iOS background mode that hosts PiP; the app uses it silently in mix-with-others mode, so your music or podcasts keep playing untouched.</span></p></details>
+
+<details><summary><span class="zh">支持哪些设备和系统？</span><span class="en">Which devices and OS versions are supported?</span></summary>
+<p><span class="zh">iPhone 与 iPad，iOS/iPadOS 18.0 及以上。</span>
+<span class="en">iPhone and iPad, iOS/iPadOS 18.0 or later.</span></p></details>
+
+<details><summary><span class="zh">你们收集我的数据吗？</span><span class="en">Do you collect my data?</span></summary>
+<p><span class="zh">不收集。App 完全不联网，没有广告和统计。详见<a href="privacy-policy.html">隐私政策</a>。</span>
+<span class="en">No. The app never connects to the network and has no ads or analytics. See the <a href="privacy-policy.html">Privacy Policy</a>.</span></p></details>
+
+<div class="contact"><p>
+<span class="zh"><strong>还有问题？</strong>在 GitHub 提交 Issue：<a href="https://github.com/Luffky/gaber/issues">github.com/Luffky/gaber/issues</a>，或邮件联系 <a href="mailto:cdcupt@gmail.com">cdcupt@gmail.com</a>，我们会尽快回复。</span>
+<span class="en"><strong>Still stuck?</strong> Open an issue at <a href="https://github.com/Luffky/gaber/issues">github.com/Luffky/gaber/issues</a> or email <a href="mailto:cdcupt@gmail.com">cdcupt@gmail.com</a> and we'll get back to you.</span></p></div>
+</main>
+<footer>
+  <div>
+    <a href="index.html"><span class="zh">首页</span><span class="en">Home</span></a>
+    <a href="privacy-policy.html"><span class="zh">隐私政策</span><span class="en">Privacy Policy</span></a>
+    <a href="privacy-choices.html"><span class="zh">隐私选择</span><span class="en">Privacy Choices</span></a>
+  </div>
+  <div>© 2026 cdcupt. All rights reserved.</div>
+</footer>
+</div>
+<script>
+function applyLang(){document.body.classList.toggle('en',localStorage.getItem('gaber-lang')==='en');
+document.documentElement.lang=document.body.classList.contains('en')?'en':'zh-Hans'}
+function toggleLang(){localStorage.setItem('gaber-lang',document.body.classList.contains('en')?'zh':'en');applyLang()}
+applyLang();
+</script>
+</body>
+</html>

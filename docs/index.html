@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>秒杀时钟 Gaber — 毫秒级悬浮时钟</title>
+<meta name="description" content="毫秒级系统时钟 + 跨 App 画中画悬浮窗。为秒杀、抢票而生。无广告、无账号、不联网。">
+<style>
+:root{
+  --bg:#06090f;--bg2:#0a0f1a;--surface:rgba(255,255,255,.06);--border:rgba(255,255,255,.12);
+  --text:#f2f5f9;--muted:#8b95a5;--accent:#3fd9ff;--accent-dim:rgba(63,217,255,.14);--green:#34d399;
+  --mono:"SF Mono",ui-monospace,Menlo,Consolas,monospace;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:linear-gradient(160deg,var(--bg2),var(--bg) 60%);color:var(--text);
+  font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Segoe UI",sans-serif;
+  min-height:100vh;line-height:1.65;-webkit-font-smoothing:antialiased}
+body.en .zh{display:none}body:not(.en) .en{display:none}
+.wrap{max-width:960px;margin:0 auto;padding:0 24px}
+header{display:flex;justify-content:space-between;align-items:center;padding:22px 0}
+.brand{display:flex;align-items:center;gap:10px;font-weight:700;font-size:17px}
+.brand .dot{width:34px;height:34px;border-radius:9px;background:linear-gradient(140deg,#0e1524,#060a12);
+  border:1px solid var(--border);display:grid;place-items:center;font-family:var(--mono);color:var(--accent);font-size:15px}
+nav a{color:var(--muted);text-decoration:none;font-size:14px;margin-left:18px}
+nav a:hover{color:var(--text)}
+.lang-btn{background:var(--surface);border:1px solid var(--border);color:var(--text);border-radius:99px;
+  padding:6px 14px;font-size:13px;cursor:pointer;margin-left:18px}
+.lang-btn:hover{border-color:var(--accent);color:var(--accent)}
+.hero{text-align:center;padding:72px 0 40px}
+.badge{display:inline-block;font-size:12.5px;font-weight:600;color:var(--green);
+  background:rgba(52,211,153,.12);border:1px solid rgba(52,211,153,.25);border-radius:99px;padding:5px 14px;margin-bottom:22px}
+h1{font-size:clamp(2.2rem,4.5vw,3.4rem);line-height:1.15;letter-spacing:-.02em}
+h1 .hl{color:var(--accent)}
+.tagline{color:var(--muted);font-size:clamp(1rem,1.6vw,1.15rem);margin:18px auto 0;max-width:560px}
+.clock-demo{margin:52px auto 0;max-width:520px;background:var(--surface);border:1px solid var(--border);
+  border-radius:26px;padding:34px 20px;box-shadow:0 24px 80px rgba(63,217,255,.10)}
+.clock-demo .date{color:var(--muted);font-family:var(--mono);font-size:14px}
+.clock-demo .time{font-family:var(--mono);font-weight:700;font-size:clamp(2.4rem,7vw,3.6rem);letter-spacing:.01em;margin-top:6px}
+.clock-demo .ms{color:var(--accent);font-size:.55em}
+.store-note{margin-top:34px;color:var(--muted);font-size:14px}
+.store-note a{color:var(--accent);text-decoration:none}
+section{padding:56px 0}
+h2{font-size:1.5rem;margin-bottom:26px;letter-spacing:-.01em}
+.features{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px}
+.card{background:var(--surface);border:1px solid var(--border);border-radius:18px;padding:22px}
+.card .ic{font-size:22px;display:inline-grid;place-items:center;width:44px;height:44px;border-radius:12px;
+  background:var(--accent-dim);margin-bottom:14px}
+.card h3{font-size:1.02rem;margin-bottom:8px}
+.card p{color:var(--muted);font-size:.92rem}
+.privacy-strip{background:var(--surface);border:1px solid var(--border);border-radius:18px;
+  padding:26px;display:flex;gap:18px;align-items:flex-start;flex-wrap:wrap}
+.privacy-strip .shield{font-size:30px}
+.privacy-strip p{color:var(--muted);font-size:.95rem;max-width:640px}
+.privacy-strip a{color:var(--accent);text-decoration:none}
+footer{border-top:1px solid var(--border);padding:30px 0 44px;margin-top:30px;
+  display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;color:var(--muted);font-size:13.5px}
+footer a{color:var(--muted);text-decoration:none;margin-right:16px}
+footer a:hover{color:var(--accent)}
+@media(max-width:600px){nav a.page-link{display:none}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header>
+  <div class="brand"><span class="dot">:59</span><span><span class="zh">秒杀时钟</span><span class="en">Gaber Clock</span></span></div>
+  <nav>
+    <a class="page-link" href="support.html"><span class="zh">支持</span><span class="en">Support</span></a>
+    <a class="page-link" href="privacy-policy.html"><span class="zh">隐私政策</span><span class="en">Privacy</span></a>
+    <button class="lang-btn" onclick="toggleLang()"><span class="zh">EN</span><span class="en">中文</span></button>
+  </nav>
+</header>
+
+<main>
+<div class="hero">
+  <div class="badge"><span class="zh">✓ 与系统时间实时同步</span><span class="en">✓ Synced to system time, live</span></div>
+  <h1><span class="zh">毫秒必争的时刻，<br>让时间<span class="hl">悬浮</span>在最上层</span>
+      <span class="en">When milliseconds matter,<br>keep time <span class="hl">floating</span> on top</span></h1>
+  <p class="tagline">
+    <span class="zh">秒杀时钟是一款毫秒级精度的系统时钟，还能化身画中画悬浮窗，盖在任何 App 上面。秒杀、抢票、整点开抢，不再错过那一秒。</span>
+    <span class="en">Gaber is a millisecond-precision system clock that can float above any app as a Picture-in-Picture window. Flash sales, ticket drops, on-the-hour releases — never miss the second again.</span>
+  </p>
+  <div class="clock-demo" aria-hidden="true">
+    <div class="date">2026-07-11</div>
+    <div class="time" id="demo-clock">23:59:58<span class="ms">.427</span></div>
+  </div>
+  <p class="store-note"><span class="zh">即将登陆 App Store · iOS 18+ · 免费</span><span class="en">Coming to the App Store · iOS 18+ · Free</span></p>
+</div>
+
+<section>
+  <h2><span class="zh">功能</span><span class="en">Features</span></h2>
+  <div class="features">
+    <div class="card"><span class="ic">⏱</span>
+      <h3><span class="zh">毫秒级时钟</span><span class="en">Millisecond clock</span></h3>
+      <p><span class="zh">最高 60fps 刷新，等宽数字不抖动，直接读取本机系统时间。</span>
+         <span class="en">Up to 60 fps refresh with monospaced digits that never jitter, reading the device's system time directly.</span></p></div>
+    <div class="card"><span class="ic">🪟</span>
+      <h3><span class="zh">跨 App 悬浮窗</span><span class="en">Floats across apps</span></h3>
+      <p><span class="zh">一键开启画中画悬浮窗，切到购物、抢票 App，时钟依然压在最上层走字。</span>
+         <span class="en">One tap starts a Picture-in-Picture window; switch to your shopping or ticketing app and the clock keeps ticking on top.</span></p></div>
+    <div class="card"><span class="ic">☀️</span>
+      <h3><span class="zh">屏幕常亮</span><span class="en">Keep screen awake</span></h3>
+      <p><span class="zh">可选阻止自动锁屏，盯着倒数的时候屏幕不会黑掉。</span>
+         <span class="en">Optionally prevent auto-lock so the screen stays on while you count down.</span></p></div>
+    <div class="card"><span class="ic">🫳</span>
+      <h3><span class="zh">随手拖动</span><span class="en">Drag anywhere</span></h3>
+      <p><span class="zh">时钟卡片随手拖到不挡事的位置，双击一键复位。</span>
+         <span class="en">Drag the clock card wherever it's out of the way; double-tap to snap it back.</span></p></div>
+  </div>
+</section>
+
+<section>
+  <h2><span class="zh">隐私</span><span class="en">Privacy</span></h2>
+  <div class="privacy-strip">
+    <span class="shield">🛡️</span>
+    <p><span class="zh">秒杀时钟不收集任何数据：没有账号、没有广告、没有统计 SDK，甚至完全不联网。你的设置只保存在你自己的手机里。详见<a href="privacy-policy.html">隐私政策</a>与<a href="privacy-choices.html">隐私选择</a>。</span>
+       <span class="en">Gaber collects nothing: no accounts, no ads, no analytics SDKs — it never even touches the network. Your settings live only on your device. See the <a href="privacy-policy.html">Privacy Policy</a> and <a href="privacy-choices.html">Privacy Choices</a>.</span></p>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div>
+    <a href="index.html"><span class="zh">首页</span><span class="en">Home</span></a>
+    <a href="support.html"><span class="zh">支持</span><span class="en">Support</span></a>
+    <a href="privacy-policy.html"><span class="zh">隐私政策</span><span class="en">Privacy Policy</span></a>
+    <a href="privacy-choices.html"><span class="zh">隐私选择</span><span class="en">Privacy Choices</span></a>
+  </div>
+  <div>© 2026 cdcupt. All rights reserved.</div>
+</footer>
+</div>
+
+<script>
+function applyLang(){document.body.classList.toggle('en',localStorage.getItem('gaber-lang')==='en');
+  document.documentElement.lang=document.body.classList.contains('en')?'en':'zh-Hans'}
+function toggleLang(){localStorage.setItem('gaber-lang',document.body.classList.contains('en')?'zh':'en');applyLang()}
+applyLang();
+(function(){var el=document.getElementById('demo-clock');if(!el)return;
+function pad(n,w){return String(n).padStart(w,'0')}
+function tick(){var d=new Date();
+el.innerHTML=pad(d.getHours(),2)+':'+pad(d.getMinutes(),2)+':'+pad(d.getSeconds(),2)+'<span class="ms">.'+pad(d.getMilliseconds(),3)+'</span>';
+requestAnimationFrame(tick)}tick()})();
+</script>
+</body>
+</html>
