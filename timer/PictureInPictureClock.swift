@@ -167,13 +167,24 @@ final class PictureInPictureClock: NSObject, ObservableObject {
 
         let calendar = Calendar.autoupdatingCurrent
         let values = calendar.dateComponents([.hour, .minute, .second, .nanosecond], from: date)
-        let time = String(
-            format: "%02d:%02d:%02d.%03d",
-            values.hour ?? 0,
-            values.minute ?? 0,
-            values.second ?? 0,
-            (values.nanosecond ?? 0) / 1_000_000
-        )
+        let showMilliseconds = (UserDefaults.standard.object(forKey: SettingsKeys.showMilliseconds) as? Bool) ?? true
+        let time: String
+        if showMilliseconds {
+            time = String(
+                format: "%02d:%02d:%02d.%03d",
+                values.hour ?? 0,
+                values.minute ?? 0,
+                values.second ?? 0,
+                (values.nanosecond ?? 0) / 1_000_000
+            )
+        } else {
+            time = String(
+                format: "%02d:%02d:%02d",
+                values.hour ?? 0,
+                values.minute ?? 0,
+                values.second ?? 0
+            )
+        }
 
         UIGraphicsPushContext(context)
         let paragraph = NSMutableParagraphStyle()
