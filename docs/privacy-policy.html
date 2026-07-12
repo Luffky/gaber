@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>隐私政策 · 秒杀时钟 Gaber</title>
+<style>
+:root{--bg:#06090f;--bg2:#0a0f1a;--surface:rgba(255,255,255,.06);--border:rgba(255,255,255,.12);
+--text:#f2f5f9;--muted:#8b95a5;--accent:#3fd9ff;--mono:"SF Mono",ui-monospace,Menlo,Consolas,monospace}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:linear-gradient(160deg,var(--bg2),var(--bg) 60%);color:var(--text);
+font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Segoe UI",sans-serif;min-height:100vh;line-height:1.75;-webkit-font-smoothing:antialiased}
+body.en .zh{display:none}body:not(.en) .en{display:none}
+.wrap{max-width:760px;margin:0 auto;padding:0 24px}
+header{display:flex;justify-content:space-between;align-items:center;padding:22px 0}
+.brand{display:flex;align-items:center;gap:10px;font-weight:700;font-size:16px;color:var(--text);text-decoration:none}
+.brand .dot{width:32px;height:32px;border-radius:9px;background:linear-gradient(140deg,#0e1524,#060a12);
+border:1px solid var(--border);display:grid;place-items:center;font-family:var(--mono);color:var(--accent);font-size:14px}
+.lang-btn{background:var(--surface);border:1px solid var(--border);color:var(--text);border-radius:99px;padding:6px 14px;font-size:13px;cursor:pointer}
+.lang-btn:hover{border-color:var(--accent);color:var(--accent)}
+main{padding:36px 0 20px}
+h1{font-size:2rem;letter-spacing:-.02em;margin-bottom:6px}
+.updated{color:var(--muted);font-size:13.5px;margin-bottom:34px}
+h2{font-size:1.15rem;margin:34px 0 10px}
+p,li{color:var(--muted);font-size:.97rem}
+ul{padding-left:22px;margin:8px 0}
+.callout{background:var(--surface);border:1px solid var(--border);border-left:3px solid var(--accent);
+border-radius:12px;padding:18px 20px;margin:22px 0}
+.callout p{color:var(--text)}
+a{color:var(--accent);text-decoration:none}
+footer{border-top:1px solid var(--border);padding:28px 0 44px;margin-top:48px;display:flex;
+justify-content:space-between;flex-wrap:wrap;gap:12px;color:var(--muted);font-size:13.5px}
+footer a{color:var(--muted);margin-right:16px}footer a:hover{color:var(--accent)}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header>
+  <a class="brand" href="index.html"><span class="dot">:59</span><span><span class="zh">秒杀时钟</span><span class="en">Gaber Clock</span></span></a>
+  <button class="lang-btn" onclick="toggleLang()"><span class="zh">EN</span><span class="en">中文</span></button>
+</header>
+<main>
+<h1><span class="zh">隐私政策</span><span class="en">Privacy Policy</span></h1>
+<p class="updated"><span class="zh">最近更新：2026 年 7 月 11 日</span><span class="en">Last updated: July 11, 2026</span></p>
+
+<div class="callout"><p>
+<span class="zh"><strong>一句话版本：</strong>秒杀时钟不收集、不存储、不传输任何个人数据。App 完全不联网。</span>
+<span class="en"><strong>The short version:</strong> Gaber does not collect, store, or transmit any personal data. The app never connects to the network.</span></p></div>
+
+<h2><span class="zh">概述</span><span class="en">Overview</span></h2>
+<p><span class="zh">秒杀时钟（下称"本 App"）是一款本地运行的时钟工具。本政策说明本 App 如何对待你的信息——简而言之：我们碰不到你的任何信息。</span>
+<span class="en">Gaber ("the app") is a clock utility that runs entirely on your device. This policy explains how the app handles your information — in short: it can't touch any of it.</span></p>
+
+<h2><span class="zh">数据收集与存储</span><span class="en">Data collection &amp; storage</span></h2>
+<ul>
+<li><span class="zh">本 App <strong>不收集任何数据</strong>——没有账号系统、没有分析统计、没有崩溃上报、没有广告 SDK。</span>
+<span class="en">The app <strong>collects no data</strong> — no accounts, no analytics, no crash reporting, no ad SDKs.</span></li>
+<li><span class="zh">本 App <strong>不包含任何网络代码</strong>，不会发起任何网络请求。</span>
+<span class="en">The app <strong>contains no networking code</strong> and never makes a network request.</span></li>
+<li><span class="zh">仅有的本地数据是两项设置（是否显示毫秒、是否保持屏幕常亮），通过系统 UserDefaults 保存在你的设备上，随 App 卸载一并删除。</span>
+<span class="en">The only local data is two preferences (show milliseconds, keep screen awake), stored on your device via the system's UserDefaults and deleted when you uninstall the app.</span></li>
+</ul>
+
+<h2><span class="zh">第三方服务</span><span class="en">Third-party services</span></h2>
+<p><span class="zh">本 App 不集成任何第三方 SDK 或服务。</span>
+<span class="en">The app integrates no third-party SDKs or services.</span></p>
+
+<h2><span class="zh">设备权限</span><span class="en">Device permissions</span></h2>
+<p><span class="zh">本 App 不请求任何敏感权限——不使用相机、麦克风、定位、相册或通讯录。悬浮时钟使用系统"画中画"能力显示，这不需要权限授权；为了让画中画在后台持续走字，App 声明了系统的"音频、AirPlay 与画中画"后台模式，但不会播放任何声音。</span>
+<span class="en">The app requests no sensitive permissions — no camera, microphone, location, photos, or contacts. The floating clock uses the system Picture-in-Picture capability, which requires no permission prompt; to keep it ticking in the background the app declares the system's "Audio, AirPlay, and Picture in Picture" background mode, but it never plays any sound.</span></p>
+
+<h2><span class="zh">数据共享</span><span class="en">Data sharing</span></h2>
+<p><span class="zh">因为没有任何数据被收集，所以没有任何数据可以被共享或出售。</span>
+<span class="en">Since no data is collected, there is nothing to share or sell.</span></p>
+
+<h2><span class="zh">儿童隐私</span><span class="en">Children's privacy</span></h2>
+<p><span class="zh">本 App 面向普通用户，不收集任何人的数据——包括儿童。</span>
+<span class="en">The app is intended for general audiences and collects no data from anyone — including children.</span></p>
+
+<h2><span class="zh">政策变更</span><span class="en">Changes to this policy</span></h2>
+<p><span class="zh">如果本政策发生变化（例如未来版本引入新功能），我们会更新本页面并修改顶部的"最近更新"日期。</span>
+<span class="en">If this policy changes (for example, a future version adds new features), we will update this page and the "Last updated" date above.</span></p>
+
+<h2><span class="zh">联系我们</span><span class="en">Contact</span></h2>
+<p><span class="zh">如有任何隐私相关的问题，请在 GitHub 提交 Issue：<a href="https://github.com/Luffky/gaber/issues">github.com/Luffky/gaber/issues</a>，或邮件联系 <a href="mailto:cdcupt@gmail.com">cdcupt@gmail.com</a>。</span>
+<span class="en">For privacy questions, open an issue at <a href="https://github.com/Luffky/gaber/issues">github.com/Luffky/gaber/issues</a> or email <a href="mailto:cdcupt@gmail.com">cdcupt@gmail.com</a>.</span></p>
+</main>
+<footer>
+  <div>
+    <a href="index.html"><span class="zh">首页</span><span class="en">Home</span></a>
+    <a href="support.html"><span class="zh">支持</span><span class="en">Support</span></a>
+    <a href="privacy-choices.html"><span class="zh">隐私选择</span><span class="en">Privacy Choices</span></a>
+  </div>
+  <div>© 2026 cdcupt. All rights reserved.</div>
+</footer>
+</div>
+<script>
+function applyLang(){document.body.classList.toggle('en',localStorage.getItem('gaber-lang')==='en');
+document.documentElement.lang=document.body.classList.contains('en')?'en':'zh-Hans'}
+function toggleLang(){localStorage.setItem('gaber-lang',document.body.classList.contains('en')?'zh':'en');applyLang()}
+applyLang();
+</script>
+</body>
+</html>

@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>用户隐私选择 · 秒杀时钟 Gaber</title>
+<style>
+:root{--bg:#06090f;--bg2:#0a0f1a;--surface:rgba(255,255,255,.06);--border:rgba(255,255,255,.12);
+--text:#f2f5f9;--muted:#8b95a5;--accent:#3fd9ff;--mono:"SF Mono",ui-monospace,Menlo,Consolas,monospace}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:linear-gradient(160deg,var(--bg2),var(--bg) 60%);color:var(--text);
+font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Segoe UI",sans-serif;min-height:100vh;line-height:1.75;-webkit-font-smoothing:antialiased}
+body.en .zh{display:none}body:not(.en) .en{display:none}
+.wrap{max-width:760px;margin:0 auto;padding:0 24px}
+header{display:flex;justify-content:space-between;align-items:center;padding:22px 0}
+.brand{display:flex;align-items:center;gap:10px;font-weight:700;font-size:16px;color:var(--text);text-decoration:none}
+.brand .dot{width:32px;height:32px;border-radius:9px;background:linear-gradient(140deg,#0e1524,#060a12);
+border:1px solid var(--border);display:grid;place-items:center;font-family:var(--mono);color:var(--accent);font-size:14px}
+.lang-btn{background:var(--surface);border:1px solid var(--border);color:var(--text);border-radius:99px;padding:6px 14px;font-size:13px;cursor:pointer}
+.lang-btn:hover{border-color:var(--accent);color:var(--accent)}
+main{padding:36px 0 20px}
+h1{font-size:2rem;letter-spacing:-.02em;margin-bottom:6px}
+.updated{color:var(--muted);font-size:13.5px;margin-bottom:34px}
+h2{font-size:1.15rem;margin:34px 0 10px}
+p,li{color:var(--muted);font-size:.97rem}
+ul{padding-left:22px;margin:8px 0}
+.callout{background:var(--surface);border:1px solid var(--border);border-left:3px solid var(--accent);
+border-radius:12px;padding:18px 20px;margin:22px 0}
+.callout p{color:var(--text)}
+a{color:var(--accent);text-decoration:none}
+table{width:100%;border-collapse:collapse;margin:14px 0;font-size:.93rem}
+th,td{text-align:left;padding:10px 12px;border-bottom:1px solid var(--border);color:var(--muted)}
+th{color:var(--text);font-weight:600}
+.tbl{overflow-x:auto}
+footer{border-top:1px solid var(--border);padding:28px 0 44px;margin-top:48px;display:flex;
+justify-content:space-between;flex-wrap:wrap;gap:12px;color:var(--muted);font-size:13.5px}
+footer a{color:var(--muted);margin-right:16px}footer a:hover{color:var(--accent)}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header>
+  <a class="brand" href="index.html"><span class="dot">:59</span><span><span class="zh">秒杀时钟</span><span class="en">Gaber Clock</span></span></a>
+  <button class="lang-btn" onclick="toggleLang()"><span class="zh">EN</span><span class="en">中文</span></button>
+</header>
+<main>
+<h1><span class="zh">用户隐私选择</span><span class="en">Your Privacy Choices</span></h1>
+<p class="updated"><span class="zh">最近更新：2026 年 7 月 11 日</span><span class="en">Last updated: July 11, 2026</span></p>
+
+<div class="callout"><p>
+<span class="zh"><strong>不追踪声明：</strong>秒杀时钟不追踪你。没有广告标识符、没有跨 App 追踪、没有指纹识别，也没有任何需要"选择退出"的东西——因为从一开始就什么都没有。</span>
+<span class="en"><strong>No-tracking statement:</strong> Gaber does not track you. No advertising identifiers, no cross-app tracking, no fingerprinting — and nothing to "opt out" of, because there is nothing to begin with.</span></p></div>
+
+<h2><span class="zh">你的数据控制权</span><span class="en">Your data controls</span></h2>
+<p><span class="zh">本 App 在你的设备上保存的全部数据如下——都由你完全掌控：</span>
+<span class="en">Everything the app stores on your device is listed below — all of it fully under your control:</span></p>
+<div class="tbl">
+<table>
+<tr><th><span class="zh">数据</span><span class="en">Data</span></th>
+    <th><span class="zh">存在哪里</span><span class="en">Where it lives</span></th>
+    <th><span class="zh">如何删除</span><span class="en">How to delete</span></th></tr>
+<tr><td><span class="zh">「显示毫秒」开关状态</span><span class="en">"Show milliseconds" setting</span></td>
+    <td><span class="zh">仅本机（UserDefaults）</span><span class="en">On-device only (UserDefaults)</span></td>
+    <td rowspan="2"><span class="zh">卸载 App 即全部删除</span><span class="en">Uninstall the app — everything is removed</span></td></tr>
+<tr><td><span class="zh">「保持屏幕常亮」开关状态</span><span class="en">"Keep screen awake" setting</span></td>
+    <td><span class="zh">仅本机（UserDefaults）</span><span class="en">On-device only (UserDefaults)</span></td></tr>
+</table>
+</div>
+
+<h2><span class="zh">如何删除数据</span><span class="en">How to delete your data</span></h2>
+<p><span class="zh">直接卸载 App。两项设置随 App 一起从设备中移除，不存在任何云端副本。</span>
+<span class="en">Simply uninstall the app. Both settings are removed from the device with it; no cloud copy exists anywhere.</span></p>
+
+<h2><span class="zh">可以拒绝哪些权限？</span><span class="en">Which permissions can you deny?</span></h2>
+<p><span class="zh">本 App 不请求任何权限，所以没有需要拒绝的。iOS 系统设置中的"画中画"（设置 → 通用 → 画中画）由你掌控：关闭后悬浮窗功能不可用，App 的其余功能不受影响。</span>
+<span class="en">The app never asks for a permission, so there is nothing to deny. The system-level Picture-in-Picture switch (Settings → General → Picture in Picture) is yours to control: turning it off disables the floating window while the rest of the app keeps working.</span></p>
+
+<h2><span class="zh">选择退出机制</span><span class="en">Opt-out mechanisms</span></h2>
+<ul>
+<li><span class="zh">广告个性化：不适用（无广告）。</span><span class="en">Ad personalization: not applicable (no ads).</span></li>
+<li><span class="zh">数据分析：不适用（无统计 SDK）。</span><span class="en">Analytics: not applicable (no analytics SDKs).</span></li>
+<li><span class="zh">数据出售/共享：不适用（无数据）。</span><span class="en">Sale/sharing of data: not applicable (no data).</span></li>
+</ul>
+
+<h2><span class="zh">有疑问？</span><span class="en">Questions?</span></h2>
+<p><span class="zh">在 GitHub 提交 Issue：<a href="https://github.com/Luffky/gaber/issues">github.com/Luffky/gaber/issues</a>，或邮件联系 <a href="mailto:cdcupt@gmail.com">cdcupt@gmail.com</a>。</span>
+<span class="en">Open an issue at <a href="https://github.com/Luffky/gaber/issues">github.com/Luffky/gaber/issues</a> or email <a href="mailto:cdcupt@gmail.com">cdcupt@gmail.com</a>.</span></p>
+</main>
+<footer>
+  <div>
+    <a href="index.html"><span class="zh">首页</span><span class="en">Home</span></a>
+    <a href="support.html"><span class="zh">支持</span><span class="en">Support</span></a>
+    <a href="privacy-policy.html"><span class="zh">隐私政策</span><span class="en">Privacy Policy</span></a>
+  </div>
+  <div>© 2026 cdcupt. All rights reserved.</div>
+</footer>
+</div>
+<script>
+function applyLang(){document.body.classList.toggle('en',localStorage.getItem('gaber-lang')==='en');
+document.documentElement.lang=document.body.classList.contains('en')?'en':'zh-Hans'}
+function toggleLang(){localStorage.setItem('gaber-lang',document.body.classList.contains('en')?'zh':'en');applyLang()}
+applyLang();
+</script>
+</body>
+</html>

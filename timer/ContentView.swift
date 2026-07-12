@@ -8,14 +8,20 @@
 import SwiftUI
 import UIKit
 
+enum SettingsKeys {
+    static let keepScreenAwake = "keepScreenAwake"
+    static let showMilliseconds = "showMilliseconds"
+}
+
 struct ContentView: View {
     @Environment(\.scenePhase) private var scenePhase
 
-    @AppStorage("keepScreenAwake") private var keepScreenAwake = true
-    @AppStorage("showMilliseconds") private var showMilliseconds = true
+    @AppStorage(SettingsKeys.keepScreenAwake) private var keepScreenAwake = true
+    @AppStorage(SettingsKeys.showMilliseconds) private var showMilliseconds = true
 
     @State private var cardOffset: CGSize = .zero
     @State private var dragStartOffset: CGSize = .zero
+    @State private var containerSize: CGSize = .zero
     @StateObject private var pictureInPicture = PictureInPictureClock()
 
     var body: some View {
@@ -35,6 +41,12 @@ struct ContentView: View {
                 clockCard
                     .offset(cardOffset)
                     .gesture(dragGesture)
+                    .onTapGesture(count: 2) {
+                        withAnimation(.spring(duration: 0.35)) {
+                            cardOffset = .zero
+                            dragStartOffset = .zero
+                        }
+                    }
 
                 Spacer()
 
@@ -42,6 +54,13 @@ struct ContentView: View {
             }
             .padding(.horizontal, 20)
             .padding(.vertical, 12)
+        }
+        .onGeometryChange(for: CGSize.self) { proxy in
+            proxy.size
+        } action: { newSize in
+            containerSize = newSize
+            cardOffset = clampedOffset(cardOffset)
+            dragStartOffset = cardOffset
         }
         .preferredColorScheme(.dark)
         .onAppear(perform: updateIdleTimer)
@@ -102,9 +121,10 @@ struct ContentView: View {
                 .allowsHitTesting(false)
                 .opacity(0.001)
         }
+        // .combine 让 VoiceOver 朗读卡片内实时更新的日期与时间；
+        // 不要再叠加 accessibilityLabel，否则会覆盖掉时间内容。
         .accessibilityElement(children: .combine)
-        .accessibilityLabel("当前系统时间")
-        .accessibilityHint("按住并拖动可以移动时钟")
+        .accessibilityHint("拖动可以移动时钟，双击可将时钟复位")
     }
 
     private var controls: some View {
@@ -144,14 +164,25 @@ struct ContentView: View {
     private var dragGesture: some Gesture {
         DragGesture()
             .onChanged { value in
-                cardOffset = CGSize(
+                cardOffset = clampedOffset(CGSize(
                     width: dragStartOffset.width + value.translation.width,
                     height: dragStartOffset.height + value.translation.height
-                )
+                ))
             }
             .onEnded { _ in
                 dragStartOffset = cardOffset
             }
+    }
+
+    /// 限制拖动范围，保证时钟卡片始终有一部分留在屏幕内，不会被拖丢。
+    private func clampedOffset(_ proposed: CGSize) -> CGSize {
+        guard containerSize.width > 0, containerSize.height > 0 else { return proposed }
+        let maxX = containerSize.width * 0.4
+        let maxY = containerSize.height * 0.35
+        return CGSize(
+            width: min(max(proposed.width, -maxX), maxX),
+            height: min(max(proposed.height, -maxY), maxY)
+        )
     }
 
     private func updateIdleTimer() {
@@ -208,7 +239,7 @@ private struct PreciseClockView: View {
                 }
             }
 
-            Text("长按拖动时钟")
+            Text("拖动可移动 · 双击复位")
                 .font(.caption2)
                 .foregroundStyle(.tertiary)
         }
